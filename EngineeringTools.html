@@ -15,17 +15,17 @@
 
 <body>
 	<!-- your content here... -->
+	<div>
+		<label for="radius">Radius: </label>
+		<input name="radius"  type="range" id="radius" min=0 max=100 value=50>
+		<label for="radius"  id="radius-output">50</label>
+	</div>
 	<h3>Canvas</h3>
-    <canvas id="myCanvas" width="800" height="600"
+    <canvas id="canvas" width="800" height="600"
             style="border: 1px solid black;">
       This text is displayed if your browser does not support HTML5 canvas...try Chrome
     </canvas>
 
-    <script>
-      // We'll attach both of these to the JavaScript window object
-      // so we can easily access them in the console
-      window.canvas = document.getElementById('myCanvas');
-      window.ctx = canvas.getContext('2d');
-    </script>
+    <script src="app/app.js"></script>
 </body>
 </html>
