@@ -14,11 +14,18 @@
 </head>
 
 <body>
-  <!-- your content here... -->
-  <p>Drawing Tool
-  <p>Digital Tool
-  <p>Analog Tool
-  <p>Microwave Tool
-  <script src="js/scripts.js"></script>
+	<!-- your content here... -->
+	<h3>Canvas</h3>
+    <canvas id="myCanvas" width="800" height="600"
+            style="border: 1px solid black;">
+      This text is displayed if your browser does not support HTML5 canvas
+    </canvas>
+
+    <script>
+      // We'll attach both of these to the JavaScript window object
+      // so we can easily access them in the console
+      window.canvas = document.getElementById('myCanvas');
+      window.ctx = canvas.getContext('2d');
+    </script>
 </body>
 </html>
