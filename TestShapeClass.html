@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Test Shape Class</title>
+  <meta name="description" content="Test Shape Class Application in HTML5">
+  <meta name="author" content="Rick A. Crist">
+
+  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+</head>
+
+<body>
+	<canvas id="myCanvas" width="400" height="300" style="border:1px solid black;">
+		Your browser does not support HTML5 Canvas!
+	</canvas>
+	
+    <script>
+		class DrawCanvas {
+			constructor(canvas) {
+				this.canvas = canvas;
+				this.width = canvas.width;
+				this.height = canvas.heigth;
+				this.ctx = canvas.getContext('2d');
+				this.shapes = [];
+			}
+			
+			addShape = function(shape) {
+				this.shapes.push(shape);
+			}
+			
+			draw = function() {	
+				var ctx = this.ctx;
+				var shapes = this.shapes;
+				
+				// Draw all shapes in the shapes array
+				var l = shapes.length;
+				for (var i = 0; i < l; i++) {
+					shapes[i].draw(ctx);
+				}
+			}
+		}
+		
+		class Shape {
+			constructor(x, y, w, h, fill) {
+				this.x = x || 0;
+				this.y = y || 0;
+				this.w = w || 10;
+				this.h = h || 10;
+				this.fill = fill || '#AAAAAA';
+			}
+
+			draw = function(ctx) { }
+		}
+		
+		class RedRect extends Shape {
+			constructor(x, y, w, h, fill) {
+				super(x,y,w,h,fill);
+				this.x = x || 0;
+				this.y = y || 0;
+				this.w = w || 10;
+				this.h = h || 10;
+				this.fill = fill || '#FF0000';
+			}
+			
+			draw = function(ctx) {
+				ctx.fillStyle = this.fill;
+				ctx.fillRect( this.x, this.y, this.w, this.h);
+			}
+		}
+		
+		class Circle extends Shape {
+			constructor(x, y, r, sa, ea) {
+				super(x,y,10,10,'#FF0000');
+				this.x = x || 0;
+				this.y = y || 0;
+				this.r = r || 10;
+				this.sa = sa || 0;
+				this.ea = ea || 2*Math.PI;
+			}
+			
+			draw = function(ctx) {
+				ctx.beginPath();
+				ctx.arc(100, 150, 50, 0, 2 * Math.PI);
+				ctx.stroke();
+			}
+		
+		}
+
+		function main() {
+			var mycan = document.getElementById( 'myCanvas');
+			
+			var drawCanvas = new DrawCanvas(mycan);
+			
+			drawCanvas.addShape(new RedRect(100,10,50,50));
+			drawCanvas.addShape(new Circle(60,110,100,0,2*Math.PI));
+			drawCanvas.draw();
+		}
+		
+		main();
+	</script>
+</body>
+</html>

@@ -14,18 +14,21 @@
 </head>
 
 <body>
-	<!-- your content here... -->
+	<!-- Add slider control for arc radius -->
 	<div>
 		<label for="radius">Radius: </label>
 		<input name="radius"  type="range" id="radius" min=0 max=100 value=50>
 		<label for="radius"  id="radius-output">50</label>
 	</div>
+	
+	<!-- Create the HTML5 canvas element -->
 	<h3>Canvas</h3>
     <canvas id="canvas" width="800" height="600"
             style="border: 1px solid black;">
       This text is displayed if your browser does not support HTML5 canvas...try Chrome
     </canvas>
 
+	<!-- Load and run the external script file -->
     <script src="app/app.js"></script>
 </body>
 </html>
