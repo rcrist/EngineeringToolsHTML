@@ -1,7 +1,7 @@
 # EngineeringTools
  Engineering Tools in HTML5
  <ul>
- <li>IDE: Notepad++</li>
+ <li>IDE: WebStorm and Notepad++</li>
  <li>Dev browser: Chrome</li>
  <li>Language: HTML5, CSS3, Javascript ES6</li>
  </ul>

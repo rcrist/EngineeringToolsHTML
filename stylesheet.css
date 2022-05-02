@@ -1,0 +1,22 @@
+.button {
+    background-color: #646464;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button:hover{
+    color:#FFFFFF;
+    background-color: blueviolet;
+}
+@media all and (max-width:30em) {
+    .button {
+        display: block;
+        margin: 0.4em auto;
+    }
+}

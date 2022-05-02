@@ -1,85 +1,93 @@
-// Access the canvas and its context
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const controlOut = document.getElementById('radius-output');
-const control    = document.getElementById('radius');
-      control.oninput = () => {
-          controlOut.textContent = r = control.value;
-      };
-const mouse = { x: 0, y: 0 };
+class DrawCanvas {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.width = canvas.width;
+        this.height = canvas.height;
+        this.ctx = canvas.getContext('2d');
+        this.shapes = [];
+    }
 
-// Draw a filled blue rectangle on the canvas
-const blueRect = function(x,y,width,height){
-	ctx.fillStyle = 'blue';
-	ctx.fillRect(x, y, width, height);
+    addShape = function(shape) {
+        this.shapes.push(shape);
+    }
+
+    draw = function() {
+        const ctx = this.ctx;
+        const shapes = this.shapes;
+
+        // Draw all shapes in the shapes array
+        let l = shapes.length;
+        for (let i = 0; i < l; i++) {
+            shapes[i].draw(ctx);
+        }
+    }
 }
 
-// Draw a red rectangle with no fill
-// ctx.strokeStyle = "red";
-// ctx.strokeRect(10,150,100,100);
+class Shape {
+    constructor(x, y, w, h, fill) {
+        this.x = x || 0;
+        this.y = y || 0;
+        this.w = w || 10;
+        this.h = h || 10;
+        this.fill = fill || '#AAAAAA';
+    }
 
-// Draw a green rectangle using pathname
-// ctx.beginPath();
-// ctx.strokeStyle = 'green';
-// ctx.moveTo(150,110); // First point
-// ctx.lineTo(200,10);  // Second point - tip of triangle
-// ctx.lineTo(250,110); // Third point
-// ctx.lineTo(150,110); // Back to first point
-// ctx.stroke();		 // Draw the path
-
-// Draw a configurable arc
-let r  = 100; // Radius
-const p0 = { x: 0, y: 50 };
-
-const p1 = { x: 100, y: 100 };
-const p2 = { x: 150, y: 50 };
-const p3 = { x: 200, y: 100 };
-
-const labelPoint = function (p, offset, i = 0){
-    const {x, y} = offset;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillText(`${i}:(${p.x}, ${p.y})`, p.x + x, p.y + y);
+    draw = function(ctx) { }
 }
 
-const drawPoints = function (points){
-  for (let i = 0; i < points.length; i++) {
-    var p = points[i];
-    labelPoint(p, { x: 0, y: -20 } , i)
-  }
+class RedRect extends Shape {
+    constructor(x, y, w, h, fill) {
+        super(x,y,w,h,fill);
+        this.x = x || 0;
+        this.y = y || 0;
+        this.w = w || 10;
+        this.h = h || 10;
+        this.fill = fill || '#FF0000';
+    }
+
+    draw = function(ctx) {
+        ctx.fillStyle = this.fill;
+        ctx.fillRect( this.x, this.y, this.w, this.h);
+    }
 }
 
-// Draw arc
-const drawArc = function ([p0, p1, p2], r) {
-  ctx.beginPath();
-  ctx.moveTo(p0.x, p0.y);
-  ctx.arcTo(p1.x, p1.y, p2.x, p2.y, r);
-  ctx.lineTo(p2.x, p2.y);
-  ctx.stroke();
+class Circle extends Shape {
+    constructor(x, y, r, sa, ea) {
+        super(x,y,10,10,'#FF0000');
+        this.x = x || 0;
+        this.y = y || 0;
+        this.r = r || 10;
+        this.sa = sa || 0;
+        this.ea = ea || 2*Math.PI;
+    }
+
+    draw = function(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, this.sa, this.ea);
+        ctx.strokeStyle = "#ffffff";
+        ctx.stroke();
+    }
 }
 
-let t0 = 0;
-let rr = 0; // the radius that changes over time
-let a  = 0; // angle
-let PI2 = Math.PI * 2;
-const loop = function (t) {
-  t0 = t / 1000;
-  a  = t0 % PI2;
-  rr = Math.abs(Math.cos(a) * r);
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  drawArc([p1, p2, p3], rr);
-  drawPoints([p1, p2, p3]);
-  blueRect(200,200,100,100);
-  requestAnimationFrame(loop);
+function btnRectClick()
+{
+    drawCanvas.addShape(new RedRect(100,10,50,50));
+    drawCanvas.draw();
 }
 
-loop(0);
+function btnCircClick()
+{
+    drawCanvas.addShape(new Circle(60,110,50,0,2*Math.PI));
+    drawCanvas.draw();
+}
 
-// Clear the canvas using clearRect()
-//ctx.clearRect(0,0,canvas.width, canvas.height);
+function main() {
+    let myCan = document.getElementById( 'myCanvas');
+    drawCanvas = new DrawCanvas(myCan);
 
-// Clear the canvas using width
-//window.canvas.width = window.canvas.width;
+    // drawCanvas.addShape(new RedRect(100,10,50,50));
+    // drawCanvas.addShape(new Circle(60,110,50,0,2*Math.PI));
+    // drawCanvas.draw();
+}
+
+main();
