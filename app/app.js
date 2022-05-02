@@ -69,6 +69,25 @@ class Circle extends Shape {
     }
 }
 
+class Triangle extends Shape {
+    constructor(x, y) {
+        super(x,y,10,10,'#FF0000');
+        this.x = x || 0;
+        this.y = y || 0;
+    }
+
+    draw = function(ctx) {
+        ctx.beginPath();
+        ctx.moveTo(this.x,this.y);
+        ctx.lineTo(this.x + 25, this.y - 50);
+        ctx.lineTo(this.x + 50, this.y);
+        ctx.lineTo(this.x,this.y);
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+}
+
 function btnRectClick()
 {
     drawCanvas.addShape(new RedRect(100,10,50,50));
@@ -78,6 +97,12 @@ function btnRectClick()
 function btnCircClick()
 {
     drawCanvas.addShape(new Circle(60,110,50,0,2*Math.PI));
+    drawCanvas.draw();
+}
+
+function btnTriClick()
+{
+    drawCanvas.addShape(new Triangle(200,200));
     drawCanvas.draw();
 }
 
