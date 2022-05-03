@@ -9,26 +9,37 @@
   <meta name="description" content="Engineering Tools in HTML5">
   <meta name="author" content="Rick A. Crist">
 
-<!--  <link rel="stylesheet" href="css/styles.css?v=1.0">-->
+    <link rel="stylesheet" href="stylesheet.css">
 
 </head>
 
-<body>
-	<!-- Add slider control for arc radius -->
-	<div>
-		<label for="radius">Radius: </label>
-		<input name="radius"  type="range" id="radius" min=0 max=100 value=50>
-		<label for="radius"  id="radius-output">50</label>
-	</div>
-	
-	<!-- Create the HTML5 canvas element -->
-	<h3>Canvas</h3>
-    <canvas id="canvas" width="800" height="600"
-            style="border: 1px solid black;">
-      This text is displayed if your browser does not support HTML5 canvas...try Chrome
-    </canvas>
+<body style="background-color: #323232">
+	<!-- Main Menu -->
+    <div class="btn-group">
+        <button class="button" onclick="btnOpenDrawTool()">Draw Tool</button>
+        <button class="button" onclick="btnOpenDigitalTool()">Digital Tool</button>
+        <button class="button" onclick="btnOpenAnalogTool()">Analog Tool</button>
+        <button class="button" onclick="btnOpenMicrowaveTool()">RF/Microwave Tool</button>
+    </div>
 
 	<!-- Load and run the external script file -->
-    <script src="app/app.js"></script>
+    <script>
+        function btnOpenDrawTool() {
+            console.log("Open Draw Tool button click detected");
+            window.open('./DrawTool.html', '_blank');
+        }
+        function btnOpenDigitalTool() {
+            console.log("Open Digital Tool button click detected");
+            window.open('./DigitalTool.html', '_blank');
+        }
+        function btnOpenAnalogTool() {
+            console.log("Open Analog Tool button click detected");
+            window.open('./AnalogTool.html', '_blank');
+        }
+        function btnOpenMicrowaveTool() {
+            console.log("Open RF/Microwave Tool button click detected");
+            window.open('./MicrowaveTool.html', '_blank');
+        }
+    </script>
 </body>
 </html>

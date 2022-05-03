@@ -7,7 +7,7 @@
  </ul>
  
  Engineering tools is a collection of applications for engineers, technicians, and hobbyists. Applications include
- drawing tool, digital tool, analog tool, and RF/microwave tool. The objective of this project is to distribute the
- source code as a zip file. The user simply unzips the code and clicks on the .html file to run the application in
- the default browser.
+ simple drawing tool, digital circuit design tool, analog circuit design tool, and RF/Microwave circuit design tool. 
+ The objective of this project is to distribute the source code as a zip file. The user simply unzips the code and 
+ clicks on the EngineeringTools.html file to run the application in the local default browser.
  

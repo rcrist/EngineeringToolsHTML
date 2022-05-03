@@ -21,3 +21,10 @@
         margin: 0.4em auto;
     }
 }
+
+.btn-group button {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 5px;
+    display: block;
+}
